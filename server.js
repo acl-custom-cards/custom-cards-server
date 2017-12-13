@@ -21,6 +21,13 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/randomQuote', (req, res) => {
+    superagent.get('http://quotes.stormconsultancy.co.uk/random.json')
+        .end((err,resp) => {
+            res.send(resp.body.quote);
+        });
+});
+
 // /books/search?search=tree
 app.get('/search', (req, res) => {
 // https://www.googleapis.com/books/v1/volumes?q=intitle:monkeys&key=SECRETKEY
